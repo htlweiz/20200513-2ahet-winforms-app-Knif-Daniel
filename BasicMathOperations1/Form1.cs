@@ -16,7 +16,11 @@ namespace BasicMathOperations1
         {
             InitializeComponent();
         }
-
+        /// <summary>
+        /// Berechent die Summe beider Werte wenn auf diesen Knopf gedrückt wird
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAdd_Click(object sender, EventArgs e)
         {
             int number1, number2, result;
@@ -57,16 +61,188 @@ namespace BasicMathOperations1
             }
         }
 
+        /// <summary>
+        /// Setzt die Labels auf Standarteinstellungen zurück
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnClear_Click(object sender, EventArgs e)
         {
-            // Clear textboxes  and set  focus
+            
 
+            lblResultType.Text = "Ergebniss";
+            lblResult.Text = "";
             txtNumber1.Text = "0";
             txtNumber2.Text = "0";
-            lblResultType.Text = "Ergebnis";
-            lblResult.Text = "";
             txtNumber1.Focus();
             txtNumber1.SelectAll();
+        }
+
+        
+        private void LblTitle_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        /// <summary>
+        /// Rechent die Beiden Werte Minus
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BtnMinus_Click(object sender, EventArgs e)
+        {
+            int Number1, Number2, result;
+
+            try
+            {
+                Number1 = Convert.ToInt32(txtNumber1.Text);
+                Number2 = Convert.ToInt32(txtNumber2.Text);
+                result = Number1 - Number2;
+                lblResultType.Text = "Differenz";
+                lblResult.Text = Convert.ToString(result);
+
+            }
+            catch (Exception ex)
+            {
+                lblResultType.Text = "Fehler";
+                lblResultType.Text = "Kein numerischer Wert";
+
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                txtNumber1.Focus();
+                txtNumber1.SelectAll();
+            }
+        }
+
+        /// <summary>
+        /// Nimmt nummer 1 hoch nummer 2
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BtnExpo_Click(object sender, EventArgs e)
+        {
+            int Number1, Number2, result;
+
+
+            try
+            {
+                Number1 = Convert.ToInt32(txtNumber1.Text);
+                Number2 = Convert.ToInt32(txtNumber2.Text);
+
+                if (Number1==0 && Number2<=0)
+                {
+                    MessageBox.Show("Null hoch null oder einer Negativen Zahl", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    result = Convert.ToInt32(Math.Pow(Convert.ToDouble(Number1), Convert.ToDouble(Number2)));
+                    lblResult.Text = Convert.ToString(result);
+                    lblResultType.Text = "Potenz";
+                }
+
+            }
+            catch (Exception ex)
+            {
+                lblResultType.Text = "Fehler";
+                lblResultType.Text = "Kein numerischer Wert";
+
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                txtNumber1.Focus();
+                txtNumber1.SelectAll();
+            }
+        }
+
+        private void BtnMal_Click(object sender, EventArgs e)
+        {
+            int Number1, Number2, result;
+
+            try
+            {
+                Number1 = Convert.ToInt32(txtNumber1.Text);
+                Number2 = Convert.ToInt32(txtNumber2.Text);
+                result = Number1 * Number2;
+                lblResultType.Text = "Produkt";
+                lblResult.Text = Convert.ToString(result);
+
+            }
+            catch (Exception ex)
+            {
+                lblResultType.Text = "Fehler";
+                lblResultType.Text = "Kein numerischer Wert";
+
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                txtNumber1.Focus();
+                txtNumber1.SelectAll();
+            }
+        }
+
+        private void BtnDividiert_Click(object sender, EventArgs e)
+        {
+            int Number1, Number2, result;
+
+            try   //Meiner meinung würde hier ein double besser passen
+            {
+                Number1 = Convert.ToInt32(txtNumber1.Text);
+                Number2 = Convert.ToInt32(txtNumber2.Text);
+
+                if ((Number2 == 0) || (Number1 == 0))
+                {
+                    MessageBox.Show("Division durch 0", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    result = Number1 / Number2;
+                    lblResultType.Text = "Quotient";
+                    lblResult.Text = Convert.ToString(result);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                lblResultType.Text = "Fehler";
+                lblResultType.Text = "Kein numerischer Wert";
+
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                txtNumber1.Focus();
+                txtNumber1.SelectAll();
+            }
+        }
+
+        private void BtnWurzel_Click(object sender, EventArgs e)
+        {
+
+            int Number1, Number2, result;
+
+            try   //Meiner meinung würde hier ein double besser passen
+            {
+                Number1 = Convert.ToInt32(txtNumber1.Text);
+                Number2 = Convert.ToInt32(txtNumber2.Text);
+
+                if ((Number2 == 0) || (Number1 < 0))
+                {
+                    MessageBox.Show("0-Wurzel oder Wurzel aus einer negativen Zahl", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    result = Convert.ToInt32(Math.Pow(Convert.ToDouble(Number1), (1 / Convert.ToDouble(Number2))));
+                    lblResult.Text = Convert.ToString(result);
+                    lblResultType.Text = "Wurzel";
+                }
+
+            }
+            catch (Exception ex)
+            {
+                lblResultType.Text = "Fehler";
+                lblResultType.Text = "Kein numerischer Wert";
+
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                txtNumber1.Focus();
+                txtNumber1.SelectAll();
+            }
         }
     }
 }
